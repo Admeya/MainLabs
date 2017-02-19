@@ -5,7 +5,6 @@ import org.apache.log4j.PropertyConfigurator;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Map;
 
 
 /**
@@ -37,18 +36,12 @@ public class Main_lab1 {
                 final int finalI = i;
                 Thread thr = new Thread(new Runnable() {
                     public void run() {
-                        logger.trace(new OperationsOnResources(setOfFile[finalI]));
+                        new OperationsOnResources(setOfFile[finalI]);
                     }
                 });
-                System.out.println(thr);
                 thr.start();
             }
         }
-
-//        logger.trace("Окончательный результат:");
-//        for (Map.Entry maps : OperationsOnResources.map.entrySet()) {
-//            logger.trace(maps.getKey() + " " + maps.getValue());
-//        }
     }
 
     /**

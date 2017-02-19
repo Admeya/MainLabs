@@ -4,7 +4,6 @@ import org.apache.log4j.Logger;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.concurrent.ConcurrentHashMap;
@@ -15,17 +14,58 @@ import java.util.regex.Pattern;
  * проверки на четность и неотрицательность *
  */
 public class OperationsOnResources {
+    public static volatile Map<String, Integer> map = new ConcurrentHashMap<String, Integer>();
     static Logger logger = Logger.getLogger(OperationsOnResources.class);
     static Object lock = new Object();
-
-    public static volatile int sum = 0;
-    public static Map<String, Integer> map = new ConcurrentHashMap<String, Integer>();
-
     File file = null;
 
     public OperationsOnResources(File file) {
         this.file = file;
         readSymbolAndCountSymbols();
+    }
+
+    /**
+     * Проверка переданного значения на валидность
+     *
+     * @param number Передается считанный из входного потока набор символов
+     * @return true если значение подходит указанной маске (положительные и отрицательные целые числа)
+     */
+    public static boolean isWordCorrect(String number) {
+        Pattern p = Pattern.compile("[^A-Za-z]+");
+        if (!p.matcher(number).matches()) {
+            Main_lab1.isInterrupt = true;
+        } else
+            return true;
+
+        return false;
+    }
+
+    public static void countSameWords(String nextWord) {
+        int val = 0;
+        if (!nextWord.equals("")) {
+            if (map.containsKey(nextWord)) {
+                val = map.get(nextWord);
+                ++val;
+            } else {
+                val = 1;
+            }
+            map.put(nextWord, val);
+            logger.trace(nextWord + "---" + val);
+        }
+    }
+
+    /**
+     * Проверка условия "Число, которое войдет в сумму должно быть четным и положительным"
+     *
+     * @param word передается строка, которая проверяется, состоит ли из русских символов
+     * @return пустая строка, если строка не подходит под условие. Либо если это слово из кириллицы, то оно возвращается
+     */
+    public static String isSuitable(String word) {
+        Pattern p = Pattern.compile("[А-Яа-я]+");
+        if (p.matcher(word).matches()) {
+            return word;
+        }
+        return "";
     }
 
     @Override
@@ -50,8 +90,8 @@ public class OperationsOnResources {
                         if (sc.hasNext()) {
                             String wordForAnalisys = sc.next();
                             if (isWordCorrect(wordForAnalisys)) {
-                                // int nextNumber = isSuitable(wordForAnalisys);
-                                countSameWords(wordForAnalisys);
+                                String nextWord = isSuitable(wordForAnalisys);
+                                countSameWords(nextWord);
                             } else {
                                 try {
                                     Main_lab1.isInterrupt = true;
@@ -68,55 +108,5 @@ public class OperationsOnResources {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-    }
-
-    /**
-     * Проверка переданного значения на валидность
-     *
-     * @param number Передается считанный из входного потока набор символов
-     * @return true если значение подходит указанной маске (положительные и отрицательные целые числа)
-     */
-    public static boolean isWordCorrect(String number) {
-        Pattern p = Pattern.compile("[^A-Za-z]+");
-        if (!p.matcher(number).matches()) {
-            Main_lab1.isInterrupt = true;
-        } else
-            return true;
-
-        return false;
-    }
-
-    public static void countSameWords(String nextWord) {
-        int val = 0;
-        for (Map.Entry entr : map.entrySet()) {
-            if (entr.getKey().equals(nextWord)) {
-                val = (Integer) entr.getValue();
-                val++;
-            } else {
-                val = 1;
-            }
-        }
-        map.put(nextWord, val);
-        logger.trace(nextWord +" here in "+ val + " time ");
-    }
-
-    /**
-     * Проверка условия "Число, которое войдет в сумму должно быть четным и положительным"
-     *
-     * @param number передается строка, преобразовывается в число и проверяется на нужное условие
-     * @return num = 0 если число не подходит под условие и приведенная к типу int строка, если условие пройдено
-     */
-    public static int isSuitable(String number) {
-        int num = 0;
-        num = Integer.parseInt(number);
-
-        if ((num % 2 == 0) && (num > 0)) {
-            logger.trace("Find positive and even number! This is number " + num);
-            return num;
-        } else {
-            logger.trace("Number " + num + " thread is unsuitable for this example ");
-            num = 0;
-        }
-        return num;
     }
 }
