@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<tours>
+    <tour>
+        <idTour>3</idTour>
+        <name>Египет,два дня три ночи</name>
+        <dateStart>2017-02-20T00:00:00+03:00</dateStart>
+        <dateEnd>2017-02-21T00:00:00+03:00</dateEnd>
+        <cost>15000</cost>
+        <idDestination>15</idDestination>
+        <destinationPlaceByIdDestination>
+            <idDestination>15</idDestination>
+            <idCountry>18</idCountry>
+            <resort>Анталия</resort>
+            <hotel>4 звезды Анталия</hotel>
+        </destinationPlaceByIdDestination>
+    </tour>
+    <tour>
+        <idTour>4</idTour>
+        <name>Турция все включено,5 дней</name>
+        <dateStart>2017-02-20T00:00:00+03:00</dateStart>
+        <dateEnd>2017-02-24T00:00:00+03:00</dateEnd>
+        <cost>15000</cost>
+        <idDestination>16</idDestination>
+        <destinationPlaceByIdDestination>
+            <idDestination>16</idDestination>
+            <idCountry>19</idCountry>
+            <resort>Гали</resort>
+            <hotel>5 звезд Гали</hotel>
+        </destinationPlaceByIdDestination>
+    </tour>
+</tours>

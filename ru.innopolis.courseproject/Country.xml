@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<orders>
+    <country>
+        <idCountry>15</idCountry>
+        <nameCountry>Египет</nameCountry>
+    </country>
+    <country>
+        <idCountry>16</idCountry>
+        <nameCountry>Турция</nameCountry>
+    </country>
+    <country>
+        <idCountry>17</idCountry>
+        <nameCountry>Россия</nameCountry>
+    </country>
+</orders>

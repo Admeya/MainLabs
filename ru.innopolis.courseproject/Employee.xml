@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<destinations>
+    <employee>
+        <idEmployee>13</idEmployee>
+        <name>Агафонов</name>
+        <surname>Сергей</surname>
+        <phone>9178546232</phone>
+    </employee>
+    <employee>
+        <idEmployee>14</idEmployee>
+        <name>Пирогов</name>
+        <surname>Дмитрий</surname>
+        <phone>9875214532</phone>
+    </employee>
+    <employee>
+        <idEmployee>15</idEmployee>
+        <name>Вафельникова</name>
+        <surname>Наталья</surname>
+        <phone>9876321458</phone>
+    </employee>
+</destinations>

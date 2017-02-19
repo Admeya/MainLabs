@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<destinations>
+    <destination>
+        <idDestination>15</idDestination>
+        <idCountry>18</idCountry>
+        <resort>Анталия</resort>
+        <hotel>4 звезды Анталия</hotel>
+        <countryByIdCountry>
+            <idCountry>18</idCountry>
+            <nameCountry>Египет</nameCountry>
+        </countryByIdCountry>
+    </destination>
+    <destination>
+        <idDestination>16</idDestination>
+        <idCountry>19</idCountry>
+        <resort>Гали</resort>
+        <hotel>5 звезд Гали</hotel>
+        <countryByIdCountry>
+            <idCountry>19</idCountry>
+            <nameCountry>Турция</nameCountry>
+        </countryByIdCountry>
+    </destination>
+    <destination>
+        <idDestination>17</idDestination>
+        <idCountry>20</idCountry>
+        <resort>Петербург</resort>
+        <hotel>3 звезды Петербурга</hotel>
+        <countryByIdCountry>
+            <idCountry>20</idCountry>
+            <nameCountry>Россия</nameCountry>
+        </countryByIdCountry>
+    </destination>
+</destinations>

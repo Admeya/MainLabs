@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<orders>
+    <order>
+        <idOrder>3</idOrder>
+        <idEmployee>19</idEmployee>
+        <idClient>7</idClient>
+        <idTour>5</idTour>
+        <checkoutDate>2017-02-20T00:00:00+03:00</checkoutDate>
+        <employeeByIdEmployee>
+            <idEmployee>19</idEmployee>
+            <name>Животов</name>
+            <surname>Сергей</surname>
+            <phone>9178561245</phone>
+        </employeeByIdEmployee>
+        <clientByIdClient>
+            <idClient>7</idClient>
+            <name>Васнецов</name>
+            <surname>Сергей</surname>
+            <middlename>Юрьевич</middlename>
+            <birthdate>1989-11-15T00:00:00+03:00</birthdate>
+            <passportSerNum>1564 456753</passportSerNum>
+            <phone>9174586235</phone>
+        </clientByIdClient>
+        <catalogueToursByIdTour>
+            <idTour>5</idTour>
+            <name>Египет,два дня три ночи</name>
+            <dateStart>2017-02-20T00:00:00+03:00</dateStart>
+            <dateEnd>2017-02-21T00:00:00+03:00</dateEnd>
+            <cost>15000</cost>
+            <idDestination>15</idDestination>
+        </catalogueToursByIdTour>
+    </order>
+    <order>
+        <idOrder>4</idOrder>
+        <idEmployee>20</idEmployee>
+        <idClient>8</idClient>
+        <idTour>6</idTour>
+        <checkoutDate>2017-02-20T00:00:00+03:00</checkoutDate>
+        <employeeByIdEmployee>
+            <idEmployee>20</idEmployee>
+            <name>Ахметов</name>
+            <surname>Али</surname>
+            <phone>9874521623</phone>
+        </employeeByIdEmployee>
+        <clientByIdClient>
+            <idClient>8</idClient>
+            <name>Бучин</name>
+            <surname>Андрей</surname>
+            <middlename>Сергеевич</middlename>
+            <birthdate>1991-10-12T00:00:00+02:00</birthdate>
+            <passportSerNum>1478 456987</passportSerNum>
+            <phone>9874568521</phone>
+        </clientByIdClient>
+        <catalogueToursByIdTour>
+            <idTour>6</idTour>
+            <name>Турция все включено,5 дней</name>
+            <dateStart>2017-02-20T00:00:00+03:00</dateStart>
+            <dateEnd>2017-02-24T00:00:00+03:00</dateEnd>
+            <cost>15000</cost>
+            <idDestination>16</idDestination>
+        </catalogueToursByIdTour>
+    </order>
+</orders>

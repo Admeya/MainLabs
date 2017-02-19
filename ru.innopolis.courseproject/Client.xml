@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<clients>
+    <client>
+        <idClient>5</idClient>
+        <name>Васнецов</name>
+        <surname>Сергей</surname>
+        <middlename>Юрьевич</middlename>
+        <birthdate>1989-11-15T00:00:00+03:00</birthdate>
+        <passportSerNum>1564 456753</passportSerNum>
+        <phone>9174586235</phone>
+    </client>
+    <client>
+        <idClient>6</idClient>
+        <name>Бучин</name>
+        <surname>Андрей</surname>
+        <middlename>Сергеевич</middlename>
+        <birthdate>1991-10-12T00:00:00+02:00</birthdate>
+        <passportSerNum>1478 456987</passportSerNum>
+        <phone>9874568521</phone>
+    </client>
+</clients>
