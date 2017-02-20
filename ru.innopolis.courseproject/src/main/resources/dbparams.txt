@@ -1,0 +1,62 @@
+CREATE TABLE public.client (
+  id_client INTEGER PRIMARY KEY NOT NULL DEFAULT nextval('client_id_client_seq'::regclass),
+  name CHARACTER(15) NOT NULL,
+  surname CHARACTER(15) NOT NULL,
+  middlename CHARACTER(15),
+  birthdate DATE,
+  passport_ser_num CHARACTER(15),
+  phone CHARACTER(10)
+);
+CREATE UNIQUE INDEX client_id_client_uindex ON client USING BTREE (id_client);
+
+
+CREATE TABLE public.country (
+  id_country INTEGER PRIMARY KEY NOT NULL DEFAULT nextval('country_id_country_seq'::regclass),
+  name_country CHARACTER(20) NOT NULL
+);
+CREATE UNIQUE INDEX "Country_id_country_uindex" ON country USING BTREE (id_country);
+
+CREATE TABLE public.destination (
+  id_destination INTEGER PRIMARY KEY NOT NULL DEFAULT nextval('destination_place_id_destination_seq'::regclass),
+  id_country INTEGER NOT NULL,
+  resort CHARACTER(50),
+  hotel CHARACTER(30),
+  FOREIGN KEY (id_country) REFERENCES public.country (id_country)
+  MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+);
+CREATE UNIQUE INDEX destination_place_id_destination_uindex ON destination USING BTREE (id_destination);
+
+CREATE TABLE public.employee (
+  id_employee INTEGER PRIMARY KEY NOT NULL DEFAULT nextval('employee_id_employee_seq'::regclass),
+  name CHARACTER(15) NOT NULL,
+  surname CHARACTER(15) NOT NULL,
+  phone CHARACTER(15)
+);
+CREATE UNIQUE INDEX employee_id_employee_uindex ON employee USING BTREE (id_employee);
+
+CREATE TABLE public."order" (
+  id_order INTEGER PRIMARY KEY NOT NULL DEFAULT nextval('orders_id_order_seq'::regclass),
+  id_employee INTEGER NOT NULL,
+  id_client INTEGER NOT NULL,
+  id_tour INTEGER NOT NULL,
+  checkout_date DATE,
+  FOREIGN KEY (id_tour) REFERENCES public.tour (id_tour)
+  MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE,
+  FOREIGN KEY (id_client) REFERENCES public.client (id_client)
+  MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION,
+  FOREIGN KEY (id_employee) REFERENCES public.employee (id_employee)
+  MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+);
+CREATE UNIQUE INDEX orders_id_order_uindex ON "order" USING BTREE (id_order);
+
+CREATE TABLE public.tour (
+  id_tour INTEGER PRIMARY KEY NOT NULL DEFAULT nextval('catalogue_tours_id_seq'::regclass),
+  name CHARACTER(100) NOT NULL,
+  date_start DATE,
+  date_end DATE,
+  cost INTEGER,
+  id_destination INTEGER NOT NULL,
+  FOREIGN KEY (id_destination) REFERENCES public.destination (id_destination)
+  MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+);
+CREATE UNIQUE INDEX "Catalogue_tours_id_uindex" ON tour USING BTREE (id_tour);
