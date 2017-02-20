@@ -12,11 +12,15 @@ import java.util.List;
 /**
  * Абстрактный класс предоставляющий базовую реализацию CRUD операций с использованием JDBC.
  *
- * @param <T> таблица из БД
+ * @param <T> DAO таблицы из БД
  */
 public abstract class AbstractDao<T extends Serializable> implements GenericDAO<T> {
 
     private Connection connection;
+
+    public AbstractDao(Connection connection) {
+        this.connection = connection;
+    }
 
     public abstract String getTableName();
 
@@ -37,10 +41,6 @@ public abstract class AbstractDao<T extends Serializable> implements GenericDAO<
     protected abstract List<T> parseResultSet(ResultSet rs);
 
     protected abstract void prepareStatementForInsert(PreparedStatement statement, T object);
-
-    public AbstractDao(Connection connection) {
-        this.connection = connection;
-    }
 
     @Override
     public List<T> selectAll() {

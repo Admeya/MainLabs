@@ -22,12 +22,12 @@ public class Main {
 
     public static void main(String[] args) {
         initialize();
-        // bindingClient();
-        // bindingCountry();
-        // bindingEmployee();
+        bindingClient();
+        bindingCountry();
+        bindingEmployee();
         bindingDestination();
-        // bindingTour();
-        // bindingOrder();
+        bindingTour();
+        bindingOrder();
     }
 
     public static void initialize() {
