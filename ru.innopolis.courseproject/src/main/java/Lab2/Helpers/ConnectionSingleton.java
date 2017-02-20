@@ -24,6 +24,9 @@ public class ConnectionSingleton {
             fis = new FileInputStream("src/main/resources/config.properties");
             property.load(fis);
             Class.forName(property.getProperty("driver"));
+            this.url = property.getProperty("url");
+            this.user = property.getProperty("user");
+            this.pass = property.getProperty("pass");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -31,9 +34,6 @@ public class ConnectionSingleton {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        this.url = property.getProperty("url");
-        this.user = property.getProperty("user");
-        this.pass = property.getProperty("pass");
     }
 
     public synchronized static ConnectionSingleton getInstance() {
