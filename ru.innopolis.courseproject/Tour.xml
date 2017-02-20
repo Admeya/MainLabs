@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <tours>
     <tour>
-        <idTour>3</idTour>
+        <idTour>5</idTour>
         <name>Египет,два дня три ночи</name>
         <dateStart>2017-02-20T00:00:00+03:00</dateStart>
         <dateEnd>2017-02-21T00:00:00+03:00</dateEnd>
@@ -15,7 +15,7 @@
         </destinationPlaceByIdDestination>
     </tour>
     <tour>
-        <idTour>4</idTour>
+        <idTour>6</idTour>
         <name>Турция все включено,5 дней</name>
         <dateStart>2017-02-20T00:00:00+03:00</dateStart>
         <dateEnd>2017-02-24T00:00:00+03:00</dateEnd>

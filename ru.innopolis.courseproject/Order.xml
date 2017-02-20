@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <orders>
     <order>
-        <idOrder>3</idOrder>
+        <idOrder>5</idOrder>
         <idEmployee>19</idEmployee>
         <idClient>7</idClient>
         <idTour>5</idTour>
@@ -31,7 +31,7 @@
         </catalogueToursByIdTour>
     </order>
     <order>
-        <idOrder>4</idOrder>
+        <idOrder>6</idOrder>
         <idEmployee>20</idEmployee>
         <idClient>8</idClient>
         <idTour>6</idTour>

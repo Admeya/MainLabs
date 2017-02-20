@@ -1,21 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<destinations>
+<employees>
     <employee>
-        <idEmployee>13</idEmployee>
-        <name>Агафонов</name>
+        <idEmployee>19</idEmployee>
+        <name>Животов</name>
         <surname>Сергей</surname>
-        <phone>9178546232</phone>
+        <phone>9178561245</phone>
     </employee>
     <employee>
-        <idEmployee>14</idEmployee>
-        <name>Пирогов</name>
-        <surname>Дмитрий</surname>
-        <phone>9875214532</phone>
+        <idEmployee>20</idEmployee>
+        <name>Ахметов</name>
+        <surname>Али</surname>
+        <phone>9874521623</phone>
     </employee>
-    <employee>
-        <idEmployee>15</idEmployee>
-        <name>Вафельникова</name>
-        <surname>Наталья</surname>
-        <phone>9876321458</phone>
-    </employee>
-</destinations>
+</employees>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <clients>
     <client>
-        <idClient>5</idClient>
+        <idClient>7</idClient>
         <name>Васнецов</name>
         <surname>Сергей</surname>
         <middlename>Юрьевич</middlename>
@@ -10,7 +10,7 @@
         <phone>9174586235</phone>
     </client>
     <client>
-        <idClient>6</idClient>
+        <idClient>8</idClient>
         <name>Бучин</name>
         <surname>Андрей</surname>
         <middlename>Сергеевич</middlename>
