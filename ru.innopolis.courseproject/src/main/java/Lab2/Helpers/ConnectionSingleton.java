@@ -13,35 +13,38 @@ import java.util.Properties;
  */
 public class ConnectionSingleton {
     private static ConnectionSingleton connection;
+    private String url;
+    private String user;
+    private String pass;
 
     private ConnectionSingleton() {
+        FileInputStream fis = null;
+        Properties property = new Properties();
+        try {
+            fis = new FileInputStream("src/main/resources/config.properties");
+            property.load(fis);
+            Class.forName(property.getProperty("driver"));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        this.url = property.getProperty("url");
+        this.user = property.getProperty("user");
+        this.pass = property.getProperty("pass");
     }
 
-    public static ConnectionSingleton getInstance() {
+    public synchronized static ConnectionSingleton getInstance() {
         if (connection == null) {
             connection = new ConnectionSingleton();
         }
         return connection;
     }
 
-    private static Connection getConnection() throws ClassNotFoundException, SQLException {
-        Connection con = null;
-        Properties property = new Properties();
-        try {
-            FileInputStream fis = new FileInputStream("src/main/resources/config.properties");
-            property.load(fis);
-
-            Class.forName(property.getProperty("driver"));
-            String url = property.getProperty("url");
-            String user = property.getProperty("user");
-            String pass = property.getProperty("pass");
-            con = DriverManager.getConnection(url, user, pass);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public Connection getConnection() throws ClassNotFoundException, SQLException {
+        Connection con = DriverManager.getConnection(url, user, pass);
         return con;
     }
-
 }
