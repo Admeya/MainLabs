@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <tours>
     <tour>
-        <idTour>5</idTour>
-        <name>Египет,два дня три ночи</name>
+        <idTour>1</idTour>
+        <name>Тур в Египет</name>
         <dateStart>2017-02-20T00:00:00+03:00</dateStart>
         <dateEnd>2017-02-21T00:00:00+03:00</dateEnd>
         <cost>15000</cost>
-        <idDestination>15</idDestination>
+        <idDestination>1</idDestination>
         <destinationPlaceByIdDestination>
-            <idDestination>15</idDestination>
+            <idDestination>1</idDestination>
             <idCountry>18</idCountry>
-            <resort>Анталия</resort>
-            <hotel>4 звезды Анталия</hotel>
+            <resort>Самый лучший курорт в Египте</resort>
+            <hotel>Самый лучший отель в Египте</hotel>
         </destinationPlaceByIdDestination>
     </tour>
     <tour>
-        <idTour>6</idTour>
-        <name>Турция все включено,5 дней</name>
+        <idTour>2</idTour>
+        <name>Тур в Турцию</name>
         <dateStart>2017-02-20T00:00:00+03:00</dateStart>
-        <dateEnd>2017-02-24T00:00:00+03:00</dateEnd>
+        <dateEnd>2017-02-25T00:00:00+03:00</dateEnd>
         <cost>15000</cost>
-        <idDestination>16</idDestination>
+        <idDestination>2</idDestination>
         <destinationPlaceByIdDestination>
-            <idDestination>16</idDestination>
+            <idDestination>2</idDestination>
             <idCountry>19</idCountry>
-            <resort>Гали</resort>
-            <hotel>5 звезд Гали</hotel>
+            <resort>Самый лучший курорт в Турции</resort>
+            <hotel>Самый лучший отель в Турции</hotel>
         </destinationPlaceByIdDestination>
     </tour>
 </tours>

@@ -1,5 +1,7 @@
 package Lab2.DAO;
 
+import org.apache.log4j.Logger;
+
 import java.io.File;
 import java.io.Serializable;
 import java.sql.Connection;
@@ -9,12 +11,14 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+
 /**
  * Абстрактный класс предоставляющий базовую реализацию CRUD операций с использованием JDBC.
  *
  * @param <T> DAO таблицы из БД
  */
 public abstract class AbstractDao<T extends Serializable> implements GenericDAO<T> {
+    static Logger logger = Logger.getLogger(AbstractDao.class);
 
     private Connection connection;
 
@@ -51,7 +55,7 @@ public abstract class AbstractDao<T extends Serializable> implements GenericDAO<
             rs = statement.executeQuery(sql);
             list = parseResultSet(rs);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Возникла ошибка при извлечении данных из БД: " + sql, e);
         }
         return list;
     }
@@ -61,9 +65,9 @@ public abstract class AbstractDao<T extends Serializable> implements GenericDAO<
         String sql = getDeleteAllQuery();
         try (Statement statement = connection.createStatement()) {
             int count = statement.executeUpdate(sql);
-            System.out.println("Delete " + count + " records");
+            logger.trace(sql + " Delete " + count + " records");
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Возникла ошибка при удалении данных из БД: " + sql, e);
         }
     }
 
@@ -73,9 +77,9 @@ public abstract class AbstractDao<T extends Serializable> implements GenericDAO<
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             prepareStatementForInsert(statement, object);
             int count = statement.executeUpdate();
-            System.out.println("Insert " + count + " records");
+            logger.trace(statement + " Insert " + count + " records");
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Возникла ошибка при вставке записей в БД: " + sql, e);
         }
     }
 
@@ -87,7 +91,7 @@ public abstract class AbstractDao<T extends Serializable> implements GenericDAO<
             ResultSet rs = statement.executeQuery(sql);
             list = parseResultSet(rs);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Возникла ошибка при извлечении данных по первичному ключу из БД: " + sql, e);
         }
         if (list == null || list.size() == 0) {
             return null;

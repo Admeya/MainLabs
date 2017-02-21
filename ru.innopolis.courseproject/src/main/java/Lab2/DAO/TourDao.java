@@ -31,9 +31,9 @@ public class TourDao extends AbstractDao<TourEntity> {
 
     @Override
     public String getInsertQuery() {
-        return "INSERT INTO " + getTableName() + " (" + TourEntity.columnName + "," + TourEntity.columnDateStart + "," +
+        return "INSERT INTO " + getTableName() + " (" + TourEntity.columnId + ", " + TourEntity.columnName + "," + TourEntity.columnDateStart + "," +
                 TourEntity.columnDateEnd + "," + TourEntity.columnCost + "," + TourEntity.columnIdDestination + ") " +
-                "VALUES (?, ?, ?, ?, ?);";
+                "VALUES (?, ?, ?, ?, ?, ?);";
     }
 
     @Override
@@ -51,9 +51,9 @@ public class TourDao extends AbstractDao<TourEntity> {
                 result.add(tour);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("SQL Exception при парсинге записей из таблицы " + TourEntity.tableName + " в объект TourDAO:", e);
         } catch (ParseException e) {
-            e.printStackTrace();
+            logger.error("Parse Exception при преобразовании дат из таблицы " + TourEntity.tableName + " в объект TourDAO:", e);
         }
         return result;
     }
@@ -61,13 +61,14 @@ public class TourDao extends AbstractDao<TourEntity> {
     @Override
     protected void prepareStatementForInsert(PreparedStatement statement, TourEntity object) {
         try {
-            statement.setString(1, object.getName());
-            statement.setDate(2, Utils.UtilDateToSQLDate(object.getDateStart()));
-            statement.setDate(3, Utils.UtilDateToSQLDate(object.getDateEnd()));
-            statement.setInt(4, object.getCost());
-            statement.setInt(5, object.getDestinationPlaceByIdDestination().getIdDestination());
+            statement.setInt(1, object.getIdTour());
+            statement.setString(2, object.getName());
+            statement.setDate(3, Utils.UtilDateToSQLDate(object.getDateStart()));
+            statement.setDate(4, Utils.UtilDateToSQLDate(object.getDateEnd()));
+            statement.setInt(5, object.getCost());
+            statement.setInt(6, object.getDestinationPlaceByIdDestination().getIdDestination());
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Возникла ошибка при подготовке данных для вставки в таблицу " + TourEntity.tableName, e);
         }
     }
 

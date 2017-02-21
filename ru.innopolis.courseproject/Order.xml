@@ -1,63 +1,63 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <orders>
     <order>
-        <idOrder>3</idOrder>
-        <idEmployee>19</idEmployee>
-        <idClient>7</idClient>
-        <idTour>5</idTour>
-        <checkoutDate>2017-02-20T00:00:00+03:00</checkoutDate>
+        <idOrder>1</idOrder>
+        <idEmployee>1</idEmployee>
+        <idClient>1</idClient>
+        <idTour>1</idTour>
+        <checkoutDate>2017-02-01T00:00:00+03:00</checkoutDate>
         <employeeByIdEmployee>
-            <idEmployee>19</idEmployee>
-            <name>Животов</name>
-            <surname>Сергей</surname>
-            <phone>9178561245</phone>
+            <idEmployee>1</idEmployee>
+            <name>Иван</name>
+            <surname>Иванов</surname>
+            <phone>9178541265</phone>
         </employeeByIdEmployee>
         <clientByIdClient>
-            <idClient>7</idClient>
-            <name>Васнецов</name>
-            <surname>Сергей</surname>
-            <middlename>Юрьевич</middlename>
-            <birthdate>1989-11-15T00:00:00+03:00</birthdate>
-            <passportSerNum>1564 456753</passportSerNum>
-            <phone>9174586235</phone>
+            <idClient>1</idClient>
+            <name>Марина</name>
+            <surname>Лисицына</surname>
+            <middlename>Петровна</middlename>
+            <birthdate>1986-02-01T00:00:00+03:00</birthdate>
+            <passportSerNum>4562 458742</passportSerNum>
+            <phone>9487531245</phone>
         </clientByIdClient>
         <catalogueToursByIdTour>
-            <idTour>5</idTour>
-            <name>Египет,два дня три ночи</name>
+            <idTour>1</idTour>
+            <name>Тур в Египет</name>
             <dateStart>2017-02-20T00:00:00+03:00</dateStart>
             <dateEnd>2017-02-21T00:00:00+03:00</dateEnd>
             <cost>15000</cost>
-            <idDestination>15</idDestination>
+            <idDestination>1</idDestination>
         </catalogueToursByIdTour>
     </order>
     <order>
-        <idOrder>4</idOrder>
-        <idEmployee>20</idEmployee>
-        <idClient>8</idClient>
-        <idTour>6</idTour>
-        <checkoutDate>2017-02-20T00:00:00+03:00</checkoutDate>
+        <idOrder>2</idOrder>
+        <idEmployee>2</idEmployee>
+        <idClient>2</idClient>
+        <idTour>2</idTour>
+        <checkoutDate>2017-02-10T00:00:00+03:00</checkoutDate>
         <employeeByIdEmployee>
-            <idEmployee>20</idEmployee>
-            <name>Ахметов</name>
-            <surname>Али</surname>
-            <phone>9874521623</phone>
+            <idEmployee>2</idEmployee>
+            <name>Петр</name>
+            <surname>Окулов</surname>
+            <phone>9874521265</phone>
         </employeeByIdEmployee>
         <clientByIdClient>
-            <idClient>8</idClient>
-            <name>Бучин</name>
-            <surname>Андрей</surname>
-            <middlename>Сергеевич</middlename>
-            <birthdate>1991-10-12T00:00:00+02:00</birthdate>
-            <passportSerNum>1478 456987</passportSerNum>
-            <phone>9874568521</phone>
+            <idClient>2</idClient>
+            <name>Ольга</name>
+            <surname>Валуйская</surname>
+            <middlename>Игоревна</middlename>
+            <birthdate>2017-02-24T00:00:00+03:00</birthdate>
+            <passportSerNum>6452 458123</passportSerNum>
+            <phone>9374521685</phone>
         </clientByIdClient>
         <catalogueToursByIdTour>
-            <idTour>6</idTour>
-            <name>Турция все включено,5 дней</name>
+            <idTour>2</idTour>
+            <name>Тур в Турцию</name>
             <dateStart>2017-02-20T00:00:00+03:00</dateStart>
-            <dateEnd>2017-02-24T00:00:00+03:00</dateEnd>
+            <dateEnd>2017-02-25T00:00:00+03:00</dateEnd>
             <cost>15000</cost>
-            <idDestination>16</idDestination>
+            <idDestination>2</idDestination>
         </catalogueToursByIdTour>
     </order>
 </orders>

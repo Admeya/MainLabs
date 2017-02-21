@@ -29,8 +29,8 @@ public class CountryDao extends AbstractDao<CountryEntity> {
 
     @Override
     public String getInsertQuery() {
-        return "INSERT INTO " + CountryEntity.tableName + " (" + CountryEntity.columnName + ") " +
-                "VALUES (?);";
+        return "INSERT INTO " + CountryEntity.tableName + " (" + CountryEntity.columnId + " ," + CountryEntity.columnName + ") " +
+                "VALUES (?, ?);";
     }
 
     @Override
@@ -44,7 +44,7 @@ public class CountryDao extends AbstractDao<CountryEntity> {
                 result.add(country);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("SQL Exception при парсинге записей из таблицы " + CountryEntity.tableName + " в объект CountryDAO", e);
         }
         return result;
     }
@@ -52,9 +52,10 @@ public class CountryDao extends AbstractDao<CountryEntity> {
     @Override
     protected void prepareStatementForInsert(PreparedStatement statement, CountryEntity object) {
         try {
-            statement.setString(1, object.getNameCountry());
+            statement.setInt(1, object.getIdCountry());
+            statement.setString(2, object.getNameCountry());
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Возникла ошибка при подготовке данных для вставки в таблицу " + CountryEntity.tableName, e);
         }
     }
 

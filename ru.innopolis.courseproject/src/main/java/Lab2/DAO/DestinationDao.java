@@ -29,9 +29,9 @@ public class DestinationDao extends AbstractDao<DestinationEntity> {
 
     @Override
     public String getInsertQuery() {
-        return "INSERT INTO " + DestinationEntity.tableName + " (" + DestinationEntity.columnIdCountry + "," + DestinationEntity.columnResort + "," +
+        return "INSERT INTO " + DestinationEntity.tableName + " (" + DestinationEntity.columnId + ", " + DestinationEntity.columnIdCountry + "," + DestinationEntity.columnResort + "," +
                 DestinationEntity.columnHotel + ") " +
-                "VALUES (?, ?, ?);";
+                "VALUES (?, ?, ?, ?);";
     }
 
     @Override
@@ -47,7 +47,7 @@ public class DestinationDao extends AbstractDao<DestinationEntity> {
                 result.add(dest);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("SQL Exception при парсинге записей из таблицы " + DestinationEntity.tableName + " в объект ClientDestinationDAO", e);
         }
         return result;
     }
@@ -55,11 +55,12 @@ public class DestinationDao extends AbstractDao<DestinationEntity> {
     @Override
     protected void prepareStatementForInsert(PreparedStatement statement, DestinationEntity object) {
         try {
-            statement.setInt(1, object.getCountryByIdCountry().getIdCountry());
-            statement.setString(2, object.getResort());
-            statement.setString(3, object.getHotel());
+            statement.setInt(1, object.getIdDestination());
+            statement.setInt(2, object.getCountryByIdCountry().getIdCountry());
+            statement.setString(3, object.getResort());
+            statement.setString(4, object.getHotel());
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Возникла ошибка при подготовке данных для вставки в таблицу " + DestinationEntity.tableName, e);
         }
     }
 

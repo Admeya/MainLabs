@@ -1,5 +1,7 @@
 package Lab2.Helpers;
 
+import org.apache.log4j.Logger;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -12,27 +14,32 @@ import java.util.Properties;
  * Created by Ирина on 20.02.2017.
  */
 public class ConnectionSingleton {
+    static Logger logger = Logger.getLogger(ConnectionSingleton.class);
+
     private static ConnectionSingleton connection;
     private String url;
     private String user;
     private String pass;
+    private String driver;
 
     private ConnectionSingleton() {
         FileInputStream fis = null;
         Properties property = new Properties();
+        String path = "src/main/resources/config.properties";
         try {
-            fis = new FileInputStream("src/main/resources/config.properties");
+            fis = new FileInputStream(path);
             property.load(fis);
-            Class.forName(property.getProperty("driver"));
+            this.driver = property.getProperty("driver");
             this.url = property.getProperty("url");
             this.user = property.getProperty("user");
             this.pass = property.getProperty("pass");
+            Class.forName(driver);
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            logger.error("Конфигурационный файл " + path + " не найден", e);
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error("Невозможно прочитать данные из файла " + path, e);
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            logger.error("Не найден класс " + driver, e);
         }
     }
 

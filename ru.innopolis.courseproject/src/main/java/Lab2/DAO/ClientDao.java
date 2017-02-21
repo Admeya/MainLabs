@@ -31,10 +31,10 @@ public class ClientDao extends AbstractDao<ClientEntity> {
 
     @Override
     public String getInsertQuery() {
-        return "INSERT INTO " + ClientEntity.tableName + " (" + ClientEntity.columnName + "," + ClientEntity.columnSurname + "," +
+        return "INSERT INTO " + ClientEntity.tableName + " (" + ClientEntity.columnIdClient + "," + ClientEntity.columnName + "," + ClientEntity.columnSurname + "," +
                 ClientEntity.columnMiddlename + "," + ClientEntity.columnBirthdate + "," + ClientEntity.columnPasport + "," +
                 ClientEntity.columnPhone + ") " +
-                "VALUES (?, ?, ?, ?, ?, ?);";
+                "VALUES (?, ?, ?, ?, ?, ?, ?);";
     }
 
     @Override
@@ -53,9 +53,9 @@ public class ClientDao extends AbstractDao<ClientEntity> {
                 result.add(client);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("SQL Exception при парсинге записей из таблицы " + ClientEntity.tableName + " в объект ClientDAO:", e);
         } catch (ParseException e) {
-            e.printStackTrace();
+            logger.error("Parse Exception при преобразовании дат из таблицы " + ClientEntity.tableName + " в объект ClientDAO:", e);
         }
         return result;
     }
@@ -63,14 +63,15 @@ public class ClientDao extends AbstractDao<ClientEntity> {
     @Override
     protected void prepareStatementForInsert(PreparedStatement statement, ClientEntity object) {
         try {
-            statement.setString(1, object.getName());
-            statement.setString(2, object.getSurname());
-            statement.setString(3, object.getMiddlename());
-            statement.setDate(4, Utils.UtilDateToSQLDate(object.getBirthdate()));
-            statement.setString(5, object.getPassportSerNum());
-            statement.setString(6, object.getPhone());
+            statement.setInt(1, object.getIdClient());
+            statement.setString(2, object.getName());
+            statement.setString(3, object.getSurname());
+            statement.setString(4, object.getMiddlename());
+            statement.setDate(5, Utils.UtilDateToSQLDate(object.getBirthdate()));
+            statement.setString(6, object.getPassportSerNum());
+            statement.setString(7, object.getPhone());
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Возникла ошибка при подготовке данных для вставки в таблицу " + ClientEntity.tableName, e);
         }
     }
 
@@ -88,7 +89,6 @@ public class ClientDao extends AbstractDao<ClientEntity> {
     public String getDeleteQuery() {
         return null;
     }
-
 
 
 }

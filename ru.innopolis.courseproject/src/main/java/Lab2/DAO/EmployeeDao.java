@@ -29,9 +29,9 @@ public class EmployeeDao extends AbstractDao<EmployeeEntity> {
 
     @Override
     public String getInsertQuery() {
-        return "INSERT INTO " + EmployeeEntity.tableName + " (" + EmployeeEntity.columnName + "," + EmployeeEntity.columnSurname + "," +
+        return "INSERT INTO " + EmployeeEntity.tableName + " (" + EmployeeEntity.columnId + ", " + EmployeeEntity.columnName + "," + EmployeeEntity.columnSurname + "," +
                 EmployeeEntity.columnPhone + ") " +
-                "VALUES (?, ?, ?);";
+                "VALUES (?, ?, ?, ?);";
     }
 
     @Override
@@ -47,7 +47,7 @@ public class EmployeeDao extends AbstractDao<EmployeeEntity> {
                 result.add(employee);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("SQL Exception при парсинге записей из таблицы " + EmployeeEntity.tableName + " в объект EmployeeDAO ", e);
         }
         return result;
     }
@@ -55,11 +55,12 @@ public class EmployeeDao extends AbstractDao<EmployeeEntity> {
     @Override
     protected void prepareStatementForInsert(PreparedStatement statement, EmployeeEntity object) {
         try {
-            statement.setString(1, object.getName());
-            statement.setString(2, object.getSurname());
-            statement.setString(3, object.getPhone());
+            statement.setInt(1, object.getIdEmployee());
+            statement.setString(2, object.getName());
+            statement.setString(3, object.getSurname());
+            statement.setString(4, object.getPhone());
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Возникла ошибка при подготовке данных для вставки в таблицу " + EmployeeEntity.tableName, e);
         }
     }
 

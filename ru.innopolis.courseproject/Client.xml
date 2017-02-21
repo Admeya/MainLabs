@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <clients>
     <client>
-        <idClient>7</idClient>
-        <name>Васнецов</name>
-        <surname>Сергей</surname>
-        <middlename>Юрьевич</middlename>
-        <birthdate>1989-11-15T00:00:00+03:00</birthdate>
-        <passportSerNum>1564 456753</passportSerNum>
-        <phone>9174586235</phone>
+        <idClient>1</idClient>
+        <name>Марина</name>
+        <surname>Лисицына</surname>
+        <middlename>Петровна</middlename>
+        <birthdate>1986-02-01T00:00:00+03:00</birthdate>
+        <passportSerNum>4562 458742</passportSerNum>
+        <phone>9487531245</phone>
     </client>
     <client>
-        <idClient>8</idClient>
-        <name>Бучин</name>
-        <surname>Андрей</surname>
-        <middlename>Сергеевич</middlename>
-        <birthdate>1991-10-12T00:00:00+02:00</birthdate>
-        <passportSerNum>1478 456987</passportSerNum>
-        <phone>9874568521</phone>
+        <idClient>2</idClient>
+        <name>Ольга</name>
+        <surname>Валуйская</surname>
+        <middlename>Игоревна</middlename>
+        <birthdate>2017-02-24T00:00:00+03:00</birthdate>
+        <passportSerNum>6452 458123</passportSerNum>
+        <phone>9374521685</phone>
     </client>
 </clients>

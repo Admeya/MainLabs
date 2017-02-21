@@ -31,9 +31,9 @@ public class OrderDao extends AbstractDao<OrderEntity> {
 
     @Override
     public String getInsertQuery() {
-        return "INSERT INTO public." + getTableName() + " (" + OrderEntity.columnIdEmployee + "," + OrderEntity.columnIdClient + "," +
+        return "INSERT INTO public." + getTableName() + " (" + OrderEntity.columnId + ", " + OrderEntity.columnIdEmployee + "," + OrderEntity.columnIdClient + "," +
                 OrderEntity.columnIdTour + "," + OrderEntity.columnCheckoutDate + ") " +
-                "VALUES (?, ?, ?, ?);";
+                "VALUES (?, ?, ?, ?, ?);";
     }
 
     @Override
@@ -50,9 +50,9 @@ public class OrderDao extends AbstractDao<OrderEntity> {
                 result.add(order);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("SQL Exception при парсинге записей из таблицы " + OrderEntity.tableName + " в объект OrderDAO:", e);
         } catch (ParseException e) {
-            e.printStackTrace();
+            logger.error("Parse Exception при преобразовании дат из таблицы " + OrderEntity.tableName + " в объект OrderDAO:", e);
         }
         return result;
     }
@@ -60,12 +60,13 @@ public class OrderDao extends AbstractDao<OrderEntity> {
     @Override
     protected void prepareStatementForInsert(PreparedStatement statement, OrderEntity object) {
         try {
-            statement.setInt(1, object.getEmployeeByIdEmployee().getIdEmployee());
-            statement.setInt(2, object.getClientByIdClient().getIdClient());
-            statement.setInt(3, object.getCatalogueToursByIdTour().getIdTour());
-            statement.setDate(4, Utils.UtilDateToSQLDate(object.getCheckoutDate()));
+            statement.setInt(1, object.getIdOrder());
+            statement.setInt(2, object.getEmployeeByIdEmployee().getIdEmployee());
+            statement.setInt(3, object.getClientByIdClient().getIdClient());
+            statement.setInt(4, object.getCatalogueToursByIdTour().getIdTour());
+            statement.setDate(5, Utils.UtilDateToSQLDate(object.getCheckoutDate()));
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Возникла ошибка при подготовке данных для вставки в таблицу " + OrderEntity.tableName, e);
         }
     }
 

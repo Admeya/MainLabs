@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <employees>
     <employee>
-        <idEmployee>19</idEmployee>
-        <name>Животов</name>
-        <surname>Сергей</surname>
-        <phone>9178561245</phone>
+        <idEmployee>1</idEmployee>
+        <name>Иван</name>
+        <surname>Иванов</surname>
+        <phone>9178541265</phone>
     </employee>
     <employee>
-        <idEmployee>20</idEmployee>
-        <name>Ахметов</name>
-        <surname>Али</surname>
-        <phone>9874521623</phone>
+        <idEmployee>2</idEmployee>
+        <name>Петр</name>
+        <surname>Окулов</surname>
+        <phone>9874521265</phone>
     </employee>
 </employees>
