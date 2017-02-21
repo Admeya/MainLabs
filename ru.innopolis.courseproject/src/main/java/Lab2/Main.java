@@ -11,6 +11,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Queue;
+import java.util.concurrent.LinkedBlockingQueue;
 
 /**
  * Created by Ирина on 17.02.2017.
@@ -22,29 +24,43 @@ public class Main {
         PropertyConfigurator.configure("src/main/resources/log4j.properties");
     }
 
-    public static void main(String[] args) throws SQLException, ClassNotFoundException {
+    public static void main(String[] args) throws SQLException, ClassNotFoundException, InterruptedException {
         Connection conn = ConnectionSingleton.getInstance().getConnection();
 
-        List<AbstractDao> objects = new ArrayList();
-        objects.add(new ClientDao(conn));
-        objects.add(new CountryDao(conn));
-        objects.add(new DestinationDao(conn));
-        objects.add(new EmployeeDao(conn));
+//         Стремимся к унификации. Составляем список объектов, при помощи которых
+//         будем выгружать из БД
+        Queue<AbstractDao> objects = new LinkedBlockingQueue<AbstractDao>();
         objects.add(new OrderDao(conn));
         objects.add(new TourDao(conn));
+        objects.add(new DestinationDao(conn));
+        objects.add(new CountryDao(conn));
+        objects.add(new ClientDao(conn));
+        objects.add(new EmployeeDao(conn));
+
+
+        //Список потоков, чтобы отследить, когда они закончат работу.
+        List<Thread> thrs = new ArrayList<>();
 
         for (int i = 0; i < objects.size(); i++) {
             final int t = i;
             Thread thr = new Thread(new Runnable() {
                 public void run() {
-                    logger.trace("I'm thread, I'm working");
-                    AbstractDao currentObj = objects.get(t);
+
+                    //Получаем из листа ДАО таблицы
+                    AbstractDao currentObj = objects.poll();
+                    logger.trace("I'm thread, I'm working" + currentObj);
                     Binding bind = new Binding();
+                    //При помощи общего метода извлекаем все объекты из данной таблицы,
+                    // Помещаем в лист сущностей
                     List entities = currentObj.selectAll();
 
+                    // Проверяем, какого типа текущий DAO
                     if (currentObj instanceof ClientDao) {
+                        // Чтобы выгрузить в XML с нужной иерархией, используем вспомогательный класс
+                        // ClientsDAO, которому передаем List объектов, извлеченных из таблицы БД
                         ClientsDao clients = new ClientsDao();
                         clients.setClients(entities);
+                        // Сериализация в XML при помощи JAXB
                         bind.marshalling(clients.getClass(), clients, currentObj.getXMLPath());
                     }
 
@@ -57,7 +73,10 @@ public class Main {
                     if (currentObj instanceof DestinationDao) {
                         DestinationsDao destinations = new DestinationsDao();
                         destinations.setDestinations(entities);
-
+                        // Таблица Destination ссылается на таблицу Country
+                        // При выгрузке в XML необходимо будет выгрузить с вложенными сущностями,
+                        // Поэтому классу Destination передаем список, в котором содержится один объект -
+                        // соответствующая этой записи Country
                         for (DestinationEntity entityDest : (List<DestinationEntity>) entities) {
                             int idCountry = entityDest.getIdCountry();
                             CountryDao country = new CountryDao(conn);
@@ -111,10 +130,19 @@ public class Main {
                         }
                         bind.marshalling(tours.getClass(), tours, currentObj.getXMLPath());
                     }
+                    currentObj.deleteAll();
                 }
             });
-            thr.start();
+            thr.setPriority(objects.size() - i);
+
+            thrs.add(thr);
         }
+
+        for (Thread t : thrs) {
+            t.start();
+            t.join();
+        }
+        System.out.println("All threads stop marshalling!");
     }
 
 //     static void bindingClient() {
